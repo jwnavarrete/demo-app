@@ -18,7 +18,7 @@ export default async function middleware(req: NextRequest) {
     return slugResponse;
   }
 
-  const tenantResponse = await TenantMiddleware(subdomain, req);
+  const tenantResponse = await TenantMiddleware(subdomain);
   if (tenantResponse) {
     console.log("tenantResponse");
     return tenantResponse;
@@ -55,7 +55,7 @@ const isValidSubdomain = async (subdomain: string) => {
   }
 };
 
-export const TenantMiddleware = async (subdomain: string, req: NextRequest) => {
+export const TenantMiddleware = async (subdomain: string) => {
   if (
     subdomain === "localhost:3000" ||
     subdomain === "sandbox-oficina.digital"

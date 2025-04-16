@@ -1,31 +1,44 @@
 "use client";
-import { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import { AppBar, Toolbar, Typography, Button, Menu, MenuItem } from '@mui/material';
-import styles from '../page.module.css';
+import { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  Menu,
+  MenuItem,
+} from "@mui/material";
+import styles from "../page.module.css";
 
-type NavbarColor = 'inherit' | 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'default';
+type NavbarColor =
+  | "inherit"
+  | "primary"
+  | "secondary"
+  | "success"
+  | "warning"
+  | "error"
+  | "default";
 
 const colorOptions: Record<NavbarColor, string> = {
-  default: 'inherit',
-  primary: 'primary',
-  secondary: 'secondary',
-  success: 'success',
-  warning: 'warning',
-  error: 'error',
-  inherit: 'inherit',
+  default: "inherit",
+  primary: "primary",
+  secondary: "secondary",
+  success: "success",
+  warning: "warning",
+  error: "error",
+  inherit: "inherit",
 };
 
 export default function LoginPage() {
   const params = useParams();
   const tenant = params.tenant;
-  const router = useRouter();
 
-  const [navbarColor, setNavbarColor] = useState<NavbarColor>('inherit');
+  const [navbarColor, setNavbarColor] = useState<NavbarColor>("inherit");
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   useEffect(() => {
-    const savedColor = localStorage.getItem('navbarColor');
+    const savedColor = localStorage.getItem("navbarColor");
     if (savedColor) {
       setNavbarColor(savedColor as NavbarColor);
     }
@@ -33,7 +46,7 @@ export default function LoginPage() {
 
   const handleColorChange = (color: NavbarColor) => {
     setNavbarColor(color);
-    localStorage.setItem('navbarColor', color);
+    localStorage.setItem("navbarColor", color);
     setAnchorEl(null);
   };
 
@@ -43,10 +56,6 @@ export default function LoginPage() {
 
   const handleMenuClose = () => {
     setAnchorEl(null);
-  };
-
-  const redirectToHome = () => {
-    router.push('/');
   };
 
   return (
@@ -65,7 +74,10 @@ export default function LoginPage() {
             onClose={handleMenuClose}
           >
             {Object.keys(colorOptions).map((key) => (
-              <MenuItem key={key} onClick={() => handleColorChange(key as NavbarColor)}>
+              <MenuItem
+                key={key}
+                onClick={() => handleColorChange(key as NavbarColor)}
+              >
                 {key}
               </MenuItem>
             ))}
@@ -74,9 +86,9 @@ export default function LoginPage() {
       </AppBar>
       <main className={styles.main}>
         <h1>Bienvenido a {process.env.NEXT_PUBLIC_APP_NAME}</h1>
-        <h1 style={{ textAlign: 'center' }}>
-          {tenant ? `Welcome to ${tenant}` : 'Welcome'}
-        </h1>        
+        <h1 style={{ textAlign: "center" }}>
+          {tenant ? `Welcome to ${tenant}` : "Welcome"}
+        </h1>
       </main>
       <footer className={styles.footer}>Creado por Generali</footer>
     </div>
