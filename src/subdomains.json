@@ -1,0 +1,14 @@
+[
+    {
+        "subdomain": "auth"
+    },
+    {
+        "subdomain": "client1"
+    },
+    {
+        "subdomain": "client2"
+    },
+    {
+        "subdomain": "client3"
+    }
+]
