@@ -10,5 +10,9 @@
     },
     {
         "subdomain": "client3"
+    },
+    {
+        "subdomain": "oficina"
     }
+
 ]
