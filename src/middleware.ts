@@ -10,19 +10,19 @@ export default async function middleware(req: NextRequest) {
   const hostname = req.headers.get("host") || "";
   const subdomain = hostname.split(".")[0];
 
-  console.log("subdomain", subdomain);
+  // console.log("subdomain", subdomain);
 
-  const slugResponse = await SlugMiddleware(subdomain);
-  if (slugResponse) {
-    console.log("slugResponse");
-    return slugResponse;
-  }
+  // const slugResponse = await SlugMiddleware(subdomain);
+  // if (slugResponse) {
+  //   console.log("slugResponse");
+  //   return slugResponse;
+  // }
 
-  const tenantResponse = await TenantMiddleware(subdomain);
-  if (tenantResponse) {
-    console.log("tenantResponse");
-    return tenantResponse;
-  }
+  // const tenantResponse = await TenantMiddleware(subdomain);
+  // if (tenantResponse) {
+  //   console.log("tenantResponse");
+  //   return tenantResponse;
+  // }
 
   return NextResponse.rewrite(new URL(`/${subdomain}${url.pathname}`, req.url));
 
